@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace Maticsoft.Web.Controls {
+namespace RuRo.Web.Controls {
     
     
     public partial class CheckRight {

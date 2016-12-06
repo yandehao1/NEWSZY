@@ -5,10 +5,10 @@ using System.Data;
 using System.Data.OracleClient;
 using System.Configuration;
 
-namespace Maticsoft.DBUtility
+namespace RuRo.DBUtility
 {
 	/// <summary>
-    /// Copyright (C) Maticsoft
+    /// Copyright (C) RuRo
 	/// 数据访问基础类(基于Oracle)
 	/// 可以用户可以修改满足自己项目的需要。
 	/// </summary>

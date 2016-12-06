@@ -6,11 +6,11 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data.Common;
 using System.Collections.Generic;
-namespace Maticsoft.DBUtility
+namespace RuRo.DBUtility
 {
     /// <summary>
     /// 数据访问抽象基础类
-    /// Copyright (C) Maticsoft 
+    /// Copyright (C) RuRo 
     /// </summary>
     public abstract class DbHelperSQL
     {

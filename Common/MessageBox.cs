@@ -4,7 +4,7 @@ namespace RuRo.Common
 {
 	/// <summary>
 	/// 显示消息提示对话框。
-    /// Copyright (C) Maticsoft
+    /// Copyright (C) RuRo
 	/// </summary>
 	public class MessageBox
 	{		

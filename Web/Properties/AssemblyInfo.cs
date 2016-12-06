@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("RuRo.Web")]
-[assembly: AssemblyDescription("Maticsoft.Web 三层示例 By 动软卓越 ")]
+[assembly: AssemblyDescription("RuRo.Web 三层示例 By 动软卓越 ")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("动软卓越")]
-[assembly: AssemblyProduct("Maticsoft.Web 简单三层示例")]
-[assembly: AssemblyCopyright("Copyright (C) Maticsoft 2004-2012")]
+[assembly: AssemblyProduct("RuRo.Web 简单三层示例")]
+[assembly: AssemblyCopyright("Copyright (C) RuRo 2004-2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyVersion("2.0.0.0")]

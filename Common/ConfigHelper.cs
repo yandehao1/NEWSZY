@@ -5,7 +5,7 @@ namespace RuRo.Common
 {
 	/// <summary>
 	/// web.config操作类
-    /// Copyright (C) Maticsoft
+    /// Copyright (C) RuRo
 	/// </summary>
 	public sealed class ConfigHelper
 	{

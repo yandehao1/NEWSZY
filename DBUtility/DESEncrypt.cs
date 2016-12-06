@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;  
 using System.Text;
-namespace Maticsoft.DBUtility
+namespace RuRo.DBUtility
 {
 	/// <summary>
 	/// DES加密/解密类。

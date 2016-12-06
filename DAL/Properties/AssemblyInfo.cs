@@ -2,12 +2,12 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("数据访问层-Maticsoft.Net.SystemFramework")]
-[assembly: AssemblyDescription("Maticsoft.Net.SystemFramework示例项目源码")]
+[assembly: AssemblyTitle("数据访问层-RuRo.Net.SystemFramework")]
+[assembly: AssemblyDescription("RuRo.Net.SystemFramework示例项目源码")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("李天平")]
-[assembly: AssemblyProduct("http://www.maticsoft.com")]
-[assembly: AssemblyCopyright("Copyright (C)Maticsoft 2004-2010")]
+[assembly: AssemblyProduct("http://www.RuRo.com")]
+[assembly: AssemblyCopyright("Copyright (C)RuRo 2004-2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyVersion("2.0.0.0")]

@@ -4,10 +4,10 @@ using System.Collections.Specialized;
 using System.Data;
 using System.Configuration;
 using System.Data.SQLite;
-namespace Maticsoft.DBUtility
+namespace RuRo.DBUtility
 {
     /// <summary>
-    /// Copyright (C) 2011 Maticsoft 
+    /// Copyright (C) 2011 RuRo 
     /// 数据访问基础类(基于SQLite)
     /// 可以用户可以修改满足自己项目的需要。
     /// </summary>

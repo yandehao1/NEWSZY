@@ -7,7 +7,7 @@ namespace RuRo.Common
 {
     /// <summary>
     /// INI文件读写类。
-    /// Copyright (C) Maticsoft
+    /// Copyright (C) RuRo
     /// </summary>
 	public class INIFile
 	{

@@ -10,7 +10,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
 
-namespace Maticsoft.DBUtility
+namespace RuRo.DBUtility
 {
 
     /// <summary>

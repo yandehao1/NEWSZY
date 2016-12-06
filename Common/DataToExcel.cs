@@ -10,7 +10,7 @@ namespace RuRo.Common
 {
     /// <summary>
     /// 操作EXCEL导出数据报表的类
-    /// Copyright (C) Maticsoft
+    /// Copyright (C) RuRo
     /// </summary>
     public class DataToExcel
     {

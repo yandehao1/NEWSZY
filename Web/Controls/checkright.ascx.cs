@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Web.Security;
 using System.Web.UI;
 
-namespace Maticsoft.Web.Controls
+namespace RuRo.Web.Controls
 {
     public partial class CheckRight : System.Web.UI.UserControl
     {

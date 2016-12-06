@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
-namespace Maticsoft.DBUtility
+namespace RuRo.DBUtility
 {
     public enum EffentNextType
     {

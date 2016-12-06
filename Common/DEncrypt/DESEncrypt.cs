@@ -5,7 +5,7 @@ namespace RuRo.Common.DEncrypt
 {
 	/// <summary>
 	/// DES加密/解密类。
-    /// Copyright (C) Maticsoft
+    /// Copyright (C) RuRo
 	/// </summary>
 	public class DESEncrypt
 	{
@@ -22,7 +22,7 @@ namespace RuRo.Common.DEncrypt
         /// <returns></returns>
 		public static string Encrypt(string Text) 
 		{
-			return Encrypt(Text,"MATICSOFT");
+			return Encrypt(Text,"RuRo");
 		}
 		/// <summary> 
 		/// 加密数据 
@@ -61,7 +61,7 @@ namespace RuRo.Common.DEncrypt
         /// <returns></returns>
 		public static string Decrypt(string Text) 
 		{
-			return Decrypt(Text,"MATICSOFT");
+			return Decrypt(Text,"RuRo");
 		}
 		/// <summary> 
 		/// 解密数据 

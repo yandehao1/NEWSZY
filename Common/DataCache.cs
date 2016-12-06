@@ -5,7 +5,7 @@ namespace RuRo.Common
 {
 	/// <summary>
 	/// 缓存相关的操作类
-    /// Copyright (C) Maticsoft
+    /// Copyright (C) RuRo
 	/// </summary>
 	public class DataCache
 	{

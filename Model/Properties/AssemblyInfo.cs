@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 
-[assembly: AssemblyTitle("数据实体层-Maticsoft.Net.SystemFramework")]
-[assembly: AssemblyDescription("Maticsoft.Net.SystemFramework示例项目源码")]
+[assembly: AssemblyTitle("数据实体层-RuRo.Net.SystemFramework")]
+[assembly: AssemblyDescription("RuRo.Net.SystemFramework示例项目源码")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
