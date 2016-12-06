@@ -1,5 +1,4 @@
-//»ù´¡´úÂëÓÉ¿Æ·¢EasyUi´úÂëÉú³ÉÆ÷v3.5(build 20140519)´úÂëÉú³ÉÆ÷Éú³É,Ãâ·Ñ°æ×Ô¶¯Ôö¼Ó°æÈ¨×¢ÊÍ,Çë±£Áô°æÈ¨ĞÅÏ¢£¬×ğÖØ×÷ÕßÀÍ¶¯³É¹û£¬ÈçÄúÓĞ¸üºÃµÄ½¨ÒéÇë·¢ÖÁÓÊÏä£º843330160@qq.com
-using System;
+ï»¿using System;
 using System.Data;
 using System.Web;
 using System.Collections;
@@ -21,22 +20,22 @@ namespace RuRo
                 string mode = context.Request["mode"].ToString();
                 switch (mode)
                 { 
-                    case "inf":/*²éÑ¯ÊµÌåÀà*/
+                    case "inf":/*æŸ¥è¯¢å®ä½“ç±»*/
                         InfoData(context);
                         break;
-                    case "ins":/*ĞÂÔö*/
+                    case "ins":/*æ–°å¢*/
                         SaveData(context);
                         break;
-                    case "upd":/*ĞŞ¸Ä*/
+                    case "upd":/*ä¿®æ”¹*/
                         SaveData(context);
                         break;
-                    case "del":/*É¾³ı*/
+                    case "del":/*åˆ é™¤*/
                         DeleteData(context);  
                         break;
-                    case "qry":/*²éÑ¯*/
+                    case "qry":/*æŸ¥è¯¢*/
                         QueryData(context,false);
                         break;
-                    case "exp":/*µ¼³ö*/
+                    case "exp":/*å¯¼å‡º*/
                         QueryData(context,true);
                         break;
                 }
@@ -46,7 +45,7 @@ namespace RuRo
         }
 
         /// <summary>
-        /// ²éÑ¯infoÊı¾İÊµÌåÀà
+        /// æŸ¥è¯¢infoæ•°æ®å®ä½“ç±»
         /// </summary>
         /// <param name="context"></param>
         private static void InfoData(HttpContext context)
@@ -65,7 +64,7 @@ namespace RuRo
         }
 
         /// <summary>
-        /// ±£´æÊı¾İ
+        /// ä¿å­˜æ•°æ®
         /// </summary>
         /// <param name="context"></param>
         private static void SaveData(HttpContext context)
@@ -73,7 +72,7 @@ namespace RuRo
             //result rlt = new result(); 
             //try
             //{
-            //    //»ñÈ¡±£´æ·½Ê½
+            //    //è·å–ä¿å­˜æ–¹å¼
             //    string mode = context.Request["mode"].ToString();
             //    int strPk = 0;
             //    if (mode == "upd")
@@ -82,11 +81,11 @@ namespace RuRo
             //    }
             //    BLL.Specimen_BLL bll_Specimen = new BLL.Specimen_BLL();
             //    Model.Specimen model_Specimen = new Model.Specimen(); 
-            //    #region ÊµÌåÀà¸³Öµ
+            //    #region å®ä½“ç±»èµ‹å€¼
             //    if (mode == "ins")
             //    {
-            //        //±àÂë±í²ÉÓÃMax»ñÈ¡£¬Çë×¢ÒâÉèÖÃ×Ö¶Î³¤¶È
-            //        model_Specimen._id = bll_Specimen.GetMax_id();//Ö÷¼ü¸³Öµ
+            //        //ç¼–ç è¡¨é‡‡ç”¨Maxè·å–ï¼Œè¯·æ³¨æ„è®¾ç½®å­—æ®µé•¿åº¦
+            //        model_Specimen._id = bll_Specimen.GetMax_id();//ä¸»é”®èµ‹å€¼
             //    }
 
             //    if(context.Request["patientname"]!=null)
@@ -137,12 +136,12 @@ namespace RuRo
             //        if (bll_Specimen.Insert(model_Specimen))
             //        {
             //            rlt.success = true;
-            //            rlt.msg = "ĞÂÔö±£´æ³É¹¦";
+            //            rlt.msg = "æ–°å¢ä¿å­˜æˆåŠŸ";
             //        }
             //        else
             //        {
             //            rlt.success = false;
-            //            rlt.msg = "ĞÂÔö±£´æÊ§°Ü:" + DbError.getErrorMsg();
+            //            rlt.msg = "æ–°å¢ä¿å­˜å¤±è´¥:" + DbError.getErrorMsg();
             //        }
             //    }
 
@@ -151,12 +150,12 @@ namespace RuRo
             //        if (bll_Specimen.Update(model_Specimen, strPk))
             //        {
             //            rlt.success = true;
-            //            rlt.msg = "ĞŞ¸Ä±£´æ³É¹¦";
+            //            rlt.msg = "ä¿®æ”¹ä¿å­˜æˆåŠŸ";
             //        }
             //        else
             //        {
             //            rlt.success = false;
-            //            rlt.msg = "ĞŞ¸Ä±£´æÊ§°Ü:" + DbError.getErrorMsg();
+            //            rlt.msg = "ä¿®æ”¹ä¿å­˜å¤±è´¥:" + DbError.getErrorMsg();
             //        }
             //    }
             //}
@@ -169,7 +168,7 @@ namespace RuRo
         }
 
         /// <summary>
-        /// É¾³ıÊı¾İ
+        /// åˆ é™¤æ•°æ®
         /// </summary>
         /// <param name="context"></param>
         private static void DeleteData(HttpContext context)
@@ -190,24 +189,24 @@ namespace RuRo
             //        }
             //    }
             //    rlt.success = true;
-            //    rlt.msg = "³É¹¦É¾³ı[" + successNumber.ToString() + "/" + ArrayPk.Length.ToString() + "]ÌõÊı¾İ;" + errorMessage; 
+            //    rlt.msg = "æˆåŠŸåˆ é™¤[" + successNumber.ToString() + "/" + ArrayPk.Length.ToString() + "]æ¡æ•°æ®;" + errorMessage; 
             //}
             //else
             //{
             //    rlt.success = false;
-            //    rlt.msg = "PK×Ö¶ÎÎªNull";
+            //    rlt.msg = "PKå­—æ®µä¸ºNull";
             //}
             //context.Response.Write(JSONHelper.Convert2Json(rlt));
         }
 
         /// <summary>
-        /// ²éÑ¯Êı¾İ
+        /// æŸ¥è¯¢æ•°æ®
         /// </summary>
         /// <param name="context"></param>
-        /// <param name="export">ÊÇ·ñµ¼³öExcelÎÄ¼ş</param>
+        /// <param name="export">æ˜¯å¦å¯¼å‡ºExcelæ–‡ä»¶</param>
         private static void QueryData(HttpContext context, bool export)
         {
-            #region »ñÈ¡Jquery»Ø´«Server·ÖÒ³Ò³ÂëºÍÃ¿Ò³ĞĞÊı
+            #region è·å–Jqueryå›ä¼ Serveråˆ†é¡µé¡µç å’Œæ¯é¡µè¡Œæ•°
             int page,rows;
             if (context.Request["page"] != null)
                page = int.Parse(context.Request["page"]);
@@ -219,7 +218,7 @@ namespace RuRo
                 rows = 10;
             #endregion
 
-            #region »ñÈ¡Jquery»Ø´«²éÑ¯Ìõ¼ş²ÎÊı
+            #region è·å–Jqueryå›ä¼ æŸ¥è¯¢æ¡ä»¶å‚æ•°
             string strWhere = " 1=1 ";
             if (context.Request["so_keywords"] != null)
             {
@@ -237,7 +236,7 @@ namespace RuRo
             }
             #endregion
 
-            #region ×Ö¶ÎÅÅĞò
+            #region å­—æ®µæ’åº
             string sort = "id";
             string order = "asc";
             if (context.Request["sort"] != null)
@@ -246,7 +245,7 @@ namespace RuRo
                 order = context.Request["order"];
             #endregion
 
-            #region ·ÖÒ³Êı¾İ
+            #region åˆ†é¡µæ•°æ®
             //DataTable m_dtTable = new DataTable();
             //PageAction pageAction = new PageAction();
             //pageAction.CurPage = page;
@@ -260,9 +259,9 @@ namespace RuRo
             #endregion 
 
 
-            /*±àÂë°ó¶¨´úÂëÓÉKFEasyUiMaker¸ù¾İ±àÂë×Ö¶Î¶¨Òå×Ô¶¯Éú³É,Òò´ËÎ´¿¼ÂÇ×î¼ÑĞÔÄÜ£»
-             Èç±àÂë±íÊı¾İ½ÏÉÙÇé¿öÏÂ£¬¿É¸ù¾İÊµ¼ÊÇé¿ö´¦ÀíÎª£ºÏÈ²é³ö±àÂë±í×éºÏÔÙ±éÀú¸³Öµ¡£*/
-            #region ¸ù¾İÏÂÀ­ÁĞ±í±àÂëÉèÖÃdatagridÏÔÊ¾Öµ
+            /*ç¼–ç ç»‘å®šä»£ç ç”±KFEasyUiMakeræ ¹æ®ç¼–ç å­—æ®µå®šä¹‰è‡ªåŠ¨ç”Ÿæˆ,å› æ­¤æœªè€ƒè™‘æœ€ä½³æ€§èƒ½ï¼›
+             å¦‚ç¼–ç è¡¨æ•°æ®è¾ƒå°‘æƒ…å†µä¸‹ï¼Œå¯æ ¹æ®å®é™…æƒ…å†µå¤„ç†ä¸ºï¼šå…ˆæŸ¥å‡ºç¼–ç è¡¨ç»„åˆå†éå†èµ‹å€¼ã€‚*/
+            #region æ ¹æ®ä¸‹æ‹‰åˆ—è¡¨ç¼–ç è®¾ç½®datagridæ˜¾ç¤ºå€¼
             //for (int i = 0; i < m_dtTable.Rows.Count; i++)
             //{
             //}
@@ -286,9 +285,9 @@ namespace RuRo
             }
         }
 
-        #region JSONÊµÌå·µ»ØÀà¶¨Òå
+        #region JSONå®ä½“è¿”å›ç±»å®šä¹‰
         /// <summary>
-        /// ÊµÌåAjax·µ»ØÀà
+        /// å®ä½“Ajaxè¿”å›ç±»
         /// </summary>
         public class result
         {

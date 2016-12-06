@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Specimen_info.aspx.cs" Inherits="ruro.Specimen_info" %>
+ï»¿<%--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Specimen_info.aspx.cs" Inherits="ruro.Specimen_info" %>--%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
@@ -13,17 +13,17 @@
     <link rel="stylesheet" type="text/css" href="/css/kfmis.css"/>
 </head>
 <body>
-<!--´æ´¢²ÎÊıÊôĞÔinput¿Ø¼ş£¬ÅĞ¶ÏÊÇĞÂÔö»¹ÊÇĞŞ¸Ä--> 
+<!--å­˜å‚¨å‚æ•°å±æ€§inputæ§ä»¶ï¼Œåˆ¤æ–­æ˜¯æ–°å¢è¿˜æ˜¯ä¿®æ”¹--> 
 <input value=""  id="mode" type="text" style="display:none"  runat="server"  />
 <input value=""  id="pk" type="text"   style="display:none" runat="server"  />
-<!--±à¼­Êı¾İ--> 
-<!--±à¼­ÈİÆ÷£¬°´Å¥¹Ì¶¨ÔÚµ×²¿--> 
+<!--ç¼–è¾‘æ•°æ®--> 
+<!--ç¼–è¾‘å®¹å™¨ï¼ŒæŒ‰é’®å›ºå®šåœ¨åº•éƒ¨--> 
 <div class="easyui-layout" data-options="fit:true">
 <div data-options="region:'center',split:true" style="width:100px;padding:10px">
 <div id="printBody"> 
 <div class="ftitle">Specimen</div>
     <form id="frmAjax" method="post" novalidate>
-        <!--ÈçĞè¿ØÖÆ±íµ¥¿Ø¼şÎª±ØÌîÏî£¬ÇëÔö¼Óclass="easyui-validatebox" required="true" -->
+        <!--å¦‚éœ€æ§åˆ¶è¡¨å•æ§ä»¶ä¸ºå¿…å¡«é¡¹ï¼Œè¯·å¢åŠ class="easyui-validatebox" required="true" -->
         <div class="fitem">
             <div class="label">id:</div>
             <div class="control"><input id="id"  name="id"  disabled="disabled" /></div>
@@ -90,12 +90,12 @@
 </div>
 
 <div data-options="region:'south'" style="height:40px; background:#f2f2f2;">
-<!--°´Å¥-->
+<!--æŒ‰é’®-->
 <div class="fsubmit">
-	<a href="javascript:void(0)" id="linkbuttonSave" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveForm()">±£´æ</a>
-	<a href="javascript:void(0)" id="linkbuttonClear" class="easyui-linkbutton" iconCls="icon-back" onclick="clearForm();">Çå¿Õ</a>
-	<a href="javascript:void(0)" id="linkbuttonPrint" class="easyui-linkbutton" iconCls="icon-print" onclick="printPage('printBody');">´òÓ¡</a>
-	<a href="javascript:void(0)" id="linkbuttonColse" class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#dlg').dialog('close');">¹Ø±Õ</a>
+	<a href="javascript:void(0)" id="linkbuttonSave" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveForm()">ä¿å­˜</a>
+	<a href="javascript:void(0)" id="linkbuttonClear" class="easyui-linkbutton" iconCls="icon-back" onclick="clearForm();">æ¸…ç©º</a>
+	<a href="javascript:void(0)" id="linkbuttonPrint" class="easyui-linkbutton" iconCls="icon-print" onclick="printPage('printBody');">æ‰“å°</a>
+	<a href="javascript:void(0)" id="linkbuttonColse" class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#dlg').dialog('close');">å…³é—­</a>
 </div>
 </div>
 </div>
@@ -104,7 +104,7 @@
 var mode = $('#mode').val();
 var pk =  $('#pk').val();
 
-/*±à¼­»ò²é¿´×´Ì¬ÏÂ¿Ø¼ş¸³Öµ*/
+/*ç¼–è¾‘æˆ–æŸ¥çœ‹çŠ¶æ€ä¸‹æ§ä»¶èµ‹å€¼*/
 if(mode=='upd'|| mode=='inf'){ 
     url = 'Specimen_handler.ashx?mode=inf&pk='+pk; 
     $.post(url,function(data){ 
@@ -113,7 +113,7 @@ if(mode=='upd'|| mode=='inf'){
     $('#linkbuttonClear').linkbutton({disabled:true});
 }
 
-/*²é¿´×´Ì¬ÏÂdisabled¿Ø¼ş*/
+/*æŸ¥çœ‹çŠ¶æ€ä¸‹disabledæ§ä»¶*/
 if(mode=='inf'){ 
     $('#linkbuttonSave').linkbutton({disabled:true});
     $('input').attr('disabled','disabled');
@@ -123,79 +123,79 @@ if(mode=='inf'){
 if(mode=='ins') url = 'Specimen_handler.ashx?mode=ins';
 if(mode=='upd') url = 'Specimen_handler.ashx?mode=upd&pk='+pk;
 
-/*Çå¿Õ³äÌî*/
+/*æ¸…ç©ºå……å¡«*/
 function clearForm(){
     $('#frmAjax').form('clear');
 }
 
-	/*±£´æ±íµ¥Êı¾İ*/
+	/*ä¿å­˜è¡¨å•æ•°æ®*/
 	function saveForm() {
 	    var validate = true;
-	    /*ÑéÖ¤validatebox±ØÌîÏî*/
+	    /*éªŒè¯validateboxå¿…å¡«é¡¹*/
         try{
 	        if($('#frmAjax').find('.easyui-validatebox').val() == ''){
 	            validate = false;
-	            $.messager.alert('¾¯¸æ', 'Çë¼ì²é±ØÌîÏîÊÇ·ñÕıÈ·ÌîĞ´£¡', 'warning');   //´íÎóÏûÏ¢
+	            $.messager.alert('è­¦å‘Š', 'è¯·æ£€æŸ¥å¿…å¡«é¡¹æ˜¯å¦æ­£ç¡®å¡«å†™ï¼', 'warning');   //é”™è¯¯æ¶ˆæ¯
 	            return ;
 	        }
 	    }catch(exption){}
 
-        /*ÑéÖ¤dateboxÈÕÆÚ*/
+        /*éªŒè¯dateboxæ—¥æœŸ*/
         try{
 	        if($('#frmAjax').find('.easyui-datebox').datebox('getValue') == ''){
 	            validate = false;
-	            $.messager.alert('¾¯¸æ', 'Çë¼ì²éÈÕÆÚÊÇ·ñÕıÈ·Ñ¡Ôñ£¡', 'warning');   //´íÎóÏûÏ¢
+	            $.messager.alert('è­¦å‘Š', 'è¯·æ£€æŸ¥æ—¥æœŸæ˜¯å¦æ­£ç¡®é€‰æ‹©ï¼', 'warning');   //é”™è¯¯æ¶ˆæ¯
 	            return ;
 	        }
 	    }catch(exption){}
 
-        /*ÑéÖ¤datetimeboxÈÕÆÚ*/
+        /*éªŒè¯datetimeboxæ—¥æœŸ*/
         try{
 	        if($('#frmAjax').find('.easyui-datetimebox').datetimebox('getValue') == ''){
 	            validate = false;
-	            $.messager.alert('¾¯¸æ', 'Çë¼ì²éÈÕÆÚÊÇ·ñÕıÈ·Ñ¡Ôñ£¡', 'warning');   //´íÎóÏûÏ¢
+	            $.messager.alert('è­¦å‘Š', 'è¯·æ£€æŸ¥æ—¥æœŸæ˜¯å¦æ­£ç¡®é€‰æ‹©ï¼', 'warning');   //é”™è¯¯æ¶ˆæ¯
 	            return ;
 	        }
 	    }catch(exption){}
 
-	    /*ÑéÖ¤numberboxÊı×Ö*/
+	    /*éªŒè¯numberboxæ•°å­—*/
 	    try{
 	        if($('#frmAjax').find('.easyui-numberbox').numberbox('getValue') == ''){
 	            validate = false;
-	            $.messager.alert('¾¯¸æ', 'Çë¼ì²é±ØÌîÊı×ÖÏîÊÇ·ñÕıÈ·ÌîĞ´£¡', 'warning');   //´íÎóÏûÏ¢
+	            $.messager.alert('è­¦å‘Š', 'è¯·æ£€æŸ¥å¿…å¡«æ•°å­—é¡¹æ˜¯å¦æ­£ç¡®å¡«å†™ï¼', 'warning');   //é”™è¯¯æ¶ˆæ¯
 	            return ;
 	        }
 	    }catch(exption){}
 
-	    /*ÑéÖ¤combobox±ØÑ¡Ïî*/ 
+	    /*éªŒè¯comboboxå¿…é€‰é¡¹*/ 
 	    try{
 	        if($('#frmAjax').find('.easyui-combobox').combobox('getValue') == ''){
 	            validate = false;
-	            $.messager.alert('¾¯¸æ', 'Çë¼ì²é±ØÑ¡ÏîÊÇ·ñÕıÈ·Ñ¡Ôñ£¡', 'warning');   //´íÎóÏûÏ¢
+	            $.messager.alert('è­¦å‘Š', 'è¯·æ£€æŸ¥å¿…é€‰é¡¹æ˜¯å¦æ­£ç¡®é€‰æ‹©ï¼', 'warning');   //é”™è¯¯æ¶ˆæ¯
 	            return ;
 	        }
 	    }catch(exption){}
 
-	    /*ÑéÖ¤combogrid±ØÑ¡Ïî*/ 
+	    /*éªŒè¯combogridå¿…é€‰é¡¹*/ 
 	    try{
 	        if($('#frmAjax').find('.easyui-combogrid').combogrid('getValue') == ''){
 	            validate = false;
-	            $.messager.alert('¾¯¸æ', 'Çë¼ì²é±ØÑ¡ÏîÊÇ·ñÕıÈ·Ñ¡Ôñ£¡', 'warning');   //´íÎóÏûÏ¢
+	            $.messager.alert('è­¦å‘Š', 'è¯·æ£€æŸ¥å¿…é€‰é¡¹æ˜¯å¦æ­£ç¡®é€‰æ‹©ï¼', 'warning');   //é”™è¯¯æ¶ˆæ¯
 	            return ;
 	        }
 	    }catch(exption){}
-        /*URLÖ§³Ö²ÎÊıÊÜÏŞÖÆ£¬Ğ¡×Ö¶Î±íÊ¹ÓÃ
+        /*URLæ”¯æŒå‚æ•°å—é™åˆ¶ï¼Œå°å­—æ®µè¡¨ä½¿ç”¨
 		if (validate==true){
 			var Parm = $('#frmAjax').serialize();
 			var saveUrl = url + '&' + Parm; 
 			$.post(saveUrl, function (result) {
 				if (result.success) {
 					$('#dlg').dialog('close');
-					$.messager.alert('ÌáÊ¾',result.msg, 'info',function(){
-						$('#datagrid').datagrid('reload'); // ÖØĞÂ¼ÓÔØÊı¾İ
+					$.messager.alert('æç¤º',result.msg, 'info',function(){
+						$('#datagrid').datagrid('reload'); // é‡æ–°åŠ è½½æ•°æ®
 					});
 				} else {
-					$.messager.alert('¾¯¸æ', result.msg, 'warning');   //´íÎóÏûÏ¢
+					$.messager.alert('è­¦å‘Š', result.msg, 'warning');   //é”™è¯¯æ¶ˆæ¯
 				}
 			}, 'json');
 		}
@@ -203,7 +203,7 @@ function clearForm(){
 
 
 
-		/*URLÖ§³Ö²ÎÊıÊÜÏŞÖÆ£¬¿É²ÉÓÃsubmit,postÌá½»Ajax±íµ¥*/
+		/*URLæ”¯æŒå‚æ•°å—é™åˆ¶ï¼Œå¯é‡‡ç”¨submit,postæäº¤Ajaxè¡¨å•*/
 		if (validate==true){
 		    $('#frmAjax').form('submit',{  
 		        url:url,
@@ -211,11 +211,11 @@ function clearForm(){
                         resultJSON = $.parseJSON(result); 
                         if (resultJSON.success) {
 					        $('#dlg').dialog('close');
-					        $.messager.alert('ÌáÊ¾',resultJSON.msg, 'info',function(){
-						        $('#datagrid').datagrid('reload'); // ÖØĞÂ¼ÓÔØÊı¾İ
+					        $.messager.alert('æç¤º',resultJSON.msg, 'info',function(){
+						        $('#datagrid').datagrid('reload'); // é‡æ–°åŠ è½½æ•°æ®
 					        });
 				        } else {
-					        $.messager.alert('¾¯¸æ', resultJSON.msg, 'warning');   //´íÎóÏûÏ¢
+					        $.messager.alert('è­¦å‘Š', resultJSON.msg, 'warning');   //é”™è¯¯æ¶ˆæ¯
 				        }
                 }  
             });

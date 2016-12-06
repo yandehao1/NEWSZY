@@ -1,30 +1,31 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Specimen_list.aspx.cs" Inherits="ruro.Specimen_list" %>
+Ôªø<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Specimen_list.aspx.cs" Inherits="RuRo.Specimen_list" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head id="head">
-<title>Specimen</title>
-    <link rel="stylesheet" type="text/css" href="/js/easyui/themes/default/easyui.css" />
-	<link rel="stylesheet" type="text/css" href="/js/easyui/themes/icon.css" />
-	<script type="text/javascript" src="/js/easyui/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="/js/easyui/locale/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="/js/gridPrint.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/kfmis.css"/>
-
+    <title>Specimen</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="../include/jquery-easyui-1.4.3/jquery.min.js"></script>
+    <script src="../include/jquery-easyui-1.4.3/jquery.easyui.min.js"></script>
+    <script src="../include/js/jquery.cookie.js"></script>
+    <link href="../include/jquery-easyui-1.4.3/themes/default/easyui.css" rel="stylesheet" />
+    <link href="../include/jquery-easyui-1.4.3/themes/icon.css" rel="stylesheet" />
+    <link href="../include/css/default.css" rel="stylesheet" />
+    <script src="../include/js/default.js"></script>
+    <script src="../include/jquery-easyui-1.4.3/locale/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
-<!--datagrid¿∏--> 
-<table id="datagrid" title="Specimen" class="easyui-datagrid" style="width:auto;height:460px"
-             url="Specimen_handler.ashx?mode=qry" fit='false'
-             pagination="true" idField="id" rownumbers="true" 
-             fitColumns="true"  singleSelect="true" toolbar="#toolbar"
-             striped="false" pageList="[15,30,50,100,500]"
-             SelectOnCheck="true" CheckOnSelect="true" remoteSort="true">
-    <thead>    
-			<tr>
-			    <th field="ck" checkbox="true"></th>
+
+    <table id="datagrid" title="Specimen" class="easyui-datagrid" style="width: auto; height: 460px"
+        url="Specimen_handler.ashx?mode=qry" fit='false'
+        pagination="true" idfield="id" rownumbers="true"
+        fitcolumns="true" singleselect="true" toolbar="#toolbar"
+        striped="false" pagelist="[15,30,50,100,500]"
+        selectoncheck="true" checkonselect="true" remotesort="true">
+        <thead>
+            <tr>
+                <th field="ck" checkbox="true"></th>
                 <th field="id" width="100" sortable="true">id</th>
                 <th field="patientname" width="100" sortable="true">patientname</th>
                 <th field="sex" width="100" sortable="true">sex</th>
@@ -41,175 +42,174 @@
                 <th field="receivetime" width="100" sortable="true">receivetime</th>
                 <th field="receiveby" width="100" sortable="true">receiveby</th>
             </tr>
-    </thead>
-</table>
-
-<!--toolbar¿∏£¨”√”⁄datagridµƒtoolbar◊‘∂®“Âƒ⁄»›--> 
-<div id="toolbar">
-<table style="width:100%;">
-<tr>
-    <td>
-        <!--≤È—Ø ‰»Î¿∏--> 
-        <table>
+        </thead>
+    </table>
+    <div id="toolbar">
+        <table style="width: 100%;">
             <tr>
-               <!--Page ˝æ›—°‘Òƒ£ Ω-->  
-                <td><select onchange="$('#datagrid').datagrid({singleSelect:(this.value==0)})"><option value="0">µ•—°ƒ£ Ω</option><option value="1">∂‡—°ƒ£ Ω</option></select></td>
-
-                <!--≤È—Øøÿº˛-->
                 <td>
-                    <!--
-                    ±‡¬Î◊÷∂Œ<input id="so_◊÷∂Œ√˚≥∆"  class="easyui-combobox" panelHeight="auto"  data-options="valueField:'±‡¬Î±Ì∂‘”¶code◊÷∂Œ√˚',textField:'±‡¬Î±Ì∂‘”¶name◊÷∂Œ√˚', url:'/common/codeDataHandler.ashx?tabName=±‡¬Î±Ì√˚'"/>
-                    <input id="date"     class="easyui-datebox" type="text" />
-                    -->
+                    <!--Êü•ËØ¢ËæìÂÖ•Ê†è-->
+                    <table>
+                        <tr>
+                            <!--PageÊï∞ÊçÆÈÄâÊã©Ê®°Âºè-->
+                            <td>
+                                <select onchange="$('#datagrid').datagrid({singleSelect:(this.value==0)})">
+                                    <option value="0">ÂçïÈÄâÊ®°Âºè</option>
+                                    <option value="1">Â§öÈÄâÊ®°Âºè</option>
+                                </select></td>
+
+                            <!--Êü•ËØ¢Êéß‰ª∂-->
+                            <td></td>
+                            <td>
+                                <input id="so_keywords" class="easyui-searchbox" data-options="prompt:'ËØ∑ËæìÂÖ•Êü•ËØ¢ÂÖ≥ÈîÆÂ≠ó',searcher:searchData"></input></td>
+                        </tr>
+                    </table>
                 </td>
-                <!--ºÏÀ˜πÿº¸◊÷-->
-                <td><input id="so_keywords"  class="easyui-searchbox" data-options="prompt:'«Î ‰»Î≤È—Øπÿº¸◊÷',searcher:searchData" ></input></td>
+                <!--buttonÊåâÈíÆÂ∑•ÂÖ∑Ê†è-->
+                <td style="text-align: right;">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonInfo" iconcls="icon-search" plain="false" onclick="infoForm();">Êü•Áúã</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonAdd" iconcls="icon-add" plain="false" onclick="newForm();">Ê∑ªÂä†</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonEdit" iconcls="icon-edit" plain="false" onclick="editForm();">ÁºñËæë</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonDel" iconcls="icon-cancel" plain="false" onclick="destroy();">Âà†Èô§</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonExport" iconcls="icon-save" plain="false" onclick="exportData();">ÂØºÂá∫</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonPrint" iconcls="icon-print" plain="false" onclick="CreateFormPage('Specimen', $('#datagrid'));">ÊâìÂç∞</a>
+                </td>
             </tr>
-        </table> 
-    </td>
-    <!--button∞¥≈•π§æﬂ¿∏--> 
-    <td  style="text-align:right;">
-        <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonInfo" iconCls="icon-search" plain="false" onclick="infoForm();">≤Èø¥</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonAdd" iconCls="icon-add" plain="false" onclick="newForm();">ÃÌº”</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonEdit" iconCls="icon-edit" plain="false" onclick="editForm();">±‡º≠</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonDel" iconCls="icon-cancel" plain="false" onclick="destroy();">…æ≥˝</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonExport" iconCls="icon-save" plain="false" onclick="exportData();">µº≥ˆ</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonPrint" iconCls="icon-print" plain="false" onclick="CreateFormPage('Specimen', $('#datagrid'));">¥Ú”°</a>
-    </td>
-</tr>
-</table>  
-</div>
+        </table>
+    </div>
 
-<!--diaglog¥∞ø⁄£¨”√”⁄±‡º≠ ˝æ›--> 
-<div id="dlg"  class="easyui-dialog" closed="true"></div>
+    <!--diaglogÁ™óÂè£ÔºåÁî®‰∫éÁºñËæëÊï∞ÊçÆ-->
+    <div id="dlg" class="easyui-dialog" closed="true"></div>
 
-<script type="text/javascript">
-	var url;
-	/*–¬‘ˆ±Ìµ•*/
-	function newForm(){
-		$('#dlg').dialog({    
-            title: 'Specimen-ÃÌº” ˝æ›',    
-            width: 650, 
-            height: 450,    
-            closed: false,  
-            cache: false,    
-            href: 'Specimen_info.aspx?mode=ins'
-        });     
-	}
+    <script type="text/javascript">
+        var url;
+        /*Êñ∞Â¢ûË°®Âçï*/
+        function newForm() {
+            $('#dlg').dialog({
+                title: 'Specimen-Ê∑ªÂä†Êï∞ÊçÆ',
+                width: 650,
+                height: 450,
+                closed: false,
+                cache: false,
+                href: 'Specimen_info.aspx?mode=ins'
+            });
+        }
 
-	/*≤Èø¥ ˝æ›*/
-	function infoForm(){
-		var rows = $('#datagrid').datagrid('getSelections');
-	    if(rows.length>0){
-	       if(rows.length==1){
-				var row = $('#datagrid').datagrid('getSelected');
-				$('#dlg').dialog({    
-                    title: 'Specimen-≤Èø¥ ˝æ›',    
-                    width: 650,    
-                    height: 450,    
-                    closed: false,    
-                    cache: true,    
-                    href: 'Specimen_info.aspx?mode=inf&pk='+ row.id
-                });     
-			}else{ 
-				$.messager.alert('æØ∏Ê', '≤Èø¥≤Ÿ◊˜÷ªƒ‹—°‘Ò“ªÃı ˝æ›', 'warning'); 
-			}  
-	    }else{
-	         $.messager.alert('æØ∏Ê', '«Î—°‘Ò ˝æ›', 'warning');
-	    }
-	}
+        /*Êü•ÁúãÊï∞ÊçÆ*/
+        function infoForm() {
+            var rows = $('#datagrid').datagrid('getSelections');
+            if (rows.length > 0) {
+                if (rows.length == 1) {
+                    var row = $('#datagrid').datagrid('getSelected');
+                    $('#dlg').dialog({
+                        title: 'Specimen-Êü•ÁúãÊï∞ÊçÆ',
+                        width: 650,
+                        height: 450,
+                        closed: false,
+                        cache: true,
+                        href: 'Specimen_info.aspx?mode=inf&pk=' + row.id
+                    });
+                } else {
+                    $.messager.alert('Ë≠¶Âëä', 'Êü•ÁúãÊìç‰ΩúÂè™ËÉΩÈÄâÊã©‰∏ÄÊù°Êï∞ÊçÆ', 'warning');
+                }
+            } else {
+                $.messager.alert('Ë≠¶Âëä', 'ËØ∑ÈÄâÊã©Êï∞ÊçÆ', 'warning');
+            }
+        }
 
-	/*–ﬁ∏ƒ ˝æ›*/
-	function editForm(){
-		var rows = $('#datagrid').datagrid('getSelections');
-	    if(rows.length>0){
-	       if(rows.length==1){
-				var row = $('#datagrid').datagrid('getSelected');
-				$('#dlg').dialog({    
-                    title: 'Specimen-–ﬁ∏ƒ ˝æ›',    
-                    width: 650,    
-                    height: 450,    
-                    closed: false,    
-                    cache: true,    
-                    href: 'Specimen_info.aspx?mode=upd&pk='+ row.id
-                });     
-			}else{ 
-				$.messager.alert('æØ∏Ê', '–ﬁ∏ƒ≤Ÿ◊˜÷ªƒ‹—°‘Ò“ªÃı ˝æ›', 'warning'); 
-			}  
-	    }else{
-	         $.messager.alert('æØ∏Ê', '«Î—°‘Ò ˝æ›', 'warning');
-	    }
-	}
+        /*‰øÆÊîπÊï∞ÊçÆ*/
+        function editForm() {
+            var rows = $('#datagrid').datagrid('getSelections');
+            if (rows.length > 0) {
+                if (rows.length == 1) {
+                    var row = $('#datagrid').datagrid('getSelected');
+                    $('#dlg').dialog({
+                        title: 'Specimen-‰øÆÊîπÊï∞ÊçÆ',
+                        width: 650,
+                        height: 450,
+                        closed: false,
+                        cache: true,
+                        href: 'Specimen_info.aspx?mode=upd&pk=' + row.id
+                    });
+                } else {
+                    $.messager.alert('Ë≠¶Âëä', '‰øÆÊîπÊìç‰ΩúÂè™ËÉΩÈÄâÊã©‰∏ÄÊù°Êï∞ÊçÆ', 'warning');
+                }
+            } else {
+                $.messager.alert('Ë≠¶Âëä', 'ËØ∑ÈÄâÊã©Êï∞ÊçÆ', 'warning');
+            }
+        }
 
-	/*…æ≥˝—°‘Ò ˝æ›,∂‡Ãıº«¬ºPK÷˜º¸≤Œ ˝”√∂∫∫≈,∑÷ø™*/
-	function destroy(){
-		var rows = $('#datagrid').datagrid('getSelections');
-		if(rows.length>0){ 
-				var pkSelect="";
-				for(var i=0;i<rows.length;i++){
-					row = rows[i];
-					if(i==0){
-						pkSelect+= row.id;
-					}else{
-						pkSelect+=','+row.id;
-					}
-				}
-				$.messager.confirm('Ã· æ',' «∑Ò»∑»œ…æ≥˝ ˝æ›£ø',function(r){
-				if (r){
-						$.post('Specimen_handler.ashx?mode=del&pk='+pkSelect,function(result){
-							if (result.success){
-								$.messager.alert('Ã· æ', result.msg, 'info',function(){
-									$('#datagrid').datagrid('reload');    //÷ÿ–¬º”‘ÿ‘ÿ ˝æ›
-								}); 
-							} else {
-								$.messager.alert('¥ÌŒÛ', result.msg, 'warning');
-							}
-						},'json');
-					}
-				}); 
-		}else{
-			 $.messager.alert('æØ∏Ê', '«Î—°‘Ò ˝æ›', 'warning');
-		}
-	}
+        /*Âà†Èô§ÈÄâÊã©Êï∞ÊçÆ,Â§öÊù°ËÆ∞ÂΩïPK‰∏ªÈîÆÂèÇÊï∞Áî®ÈÄóÂè∑,ÂàÜÂºÄ*/
+        function destroy() {
+            var rows = $('#datagrid').datagrid('getSelections');
+            if (rows.length > 0) {
+                var pkSelect = "";
+                for (var i = 0; i < rows.length; i++) {
+                    row = rows[i];
+                    if (i == 0) {
+                        pkSelect += row.id;
+                    } else {
+                        pkSelect += ',' + row.id;
+                    }
+                }
+                $.messager.confirm('ÊèêÁ§∫', 'ÊòØÂê¶Á°ÆËÆ§Âà†Èô§Êï∞ÊçÆÔºü', function (r) {
+                    if (r) {
+                        $.post('Specimen_handler.ashx?mode=del&pk=' + pkSelect, function (result) {
+                            if (result.success) {
+                                $.messager.alert('ÊèêÁ§∫', result.msg, 'info', function () {
+                                    $('#datagrid').datagrid('reload');    //ÈáçÊñ∞Âä†ËΩΩËΩΩÊï∞ÊçÆ
+                                });
+                            } else {
+                                $.messager.alert('ÈîôËØØ', result.msg, 'warning');
+                            }
+                        }, 'json');
+                    }
+                });
+            } else {
+                $.messager.alert('Ë≠¶Âëä', 'ËØ∑ÈÄâÊã©Êï∞ÊçÆ', 'warning');
+            }
+        }
 
-	/*≤È—ØÃıº˛≤Œ ˝ππΩ®*/
-	function getSearchParm(){
-		//‘ˆº”Ãıº˛£¨«Î◊∑º”≤Œ ˝√˚≥∆
-		/*combobox÷µªÒ»°∑Ω∑®,”√”⁄œ¬¿≠Ãıº˛≤È—ØÃıº˛◊È∫œ*/
-		//var v_so_◊÷∂Œ√˚≥∆ = $('#so_◊÷∂Œ√˚≥∆').combobox('getValue');
-		var v_parm
-		var v_so_keywords = $('#so_keywords').searchbox('getValue');
-		v_parm = 'so_keywords='+escape(v_so_keywords);
-		return v_parm;
-	}
+        /*Êü•ËØ¢Êù°‰ª∂ÂèÇÊï∞ÊûÑÂª∫*/
+        function getSearchParm() {
+            //Â¢ûÂä†Êù°‰ª∂ÔºåËØ∑ËøΩÂä†ÂèÇÊï∞ÂêçÁß∞
+            /*comboboxÂÄºËé∑ÂèñÊñπÊ≥ï,Áî®‰∫é‰∏ãÊãâÊù°‰ª∂Êü•ËØ¢Êù°‰ª∂ÁªÑÂêà*/
+            //var v_so_Â≠óÊÆµÂêçÁß∞ = $('#so_Â≠óÊÆµÂêçÁß∞').combobox('getValue');
+            var v_parm
+            var v_so_keywords = $('#so_keywords').searchbox('getValue');
+            v_parm = 'so_keywords=' + escape(v_so_keywords);
+            return v_parm;
+        }
 
-	/*≤È—Ø ˝æ›*/
-	function searchData(){
-		/*ºÊπÀµº≥ˆExcelπ´”√Ãıº˛£¨‘⁄’‚¿Ôdatagrid≤ª”√load∫Ø ˝º”‘ÿ≤Œ ˝£¨÷±Ω””√URL¥´µ›≤Œ ˝*/
-		var Parm = getSearchParm();//ªÒµ√≤È—ØÃıº˛≤Œ ˝ππΩ®£¨”√URL¥´µ›≤È—Ø≤Œ ˝
-		var QryUrl='Specimen_handler.ashx?mode=qry&'+Parm; 
-		$('#datagrid').datagrid({url:QryUrl});
-	}
+        /*Êü•ËØ¢Êï∞ÊçÆ*/
+        function searchData() {
+            /*ÂÖºÈ°æÂØºÂá∫ExcelÂÖ¨Áî®Êù°‰ª∂ÔºåÂú®ËøôÈáådatagrid‰∏çÁî®loadÂáΩÊï∞Âä†ËΩΩÂèÇÊï∞ÔºåÁõ¥Êé•Áî®URL‰º†ÈÄíÂèÇÊï∞*/
+            var Parm = getSearchParm();//Ëé∑ÂæóÊü•ËØ¢Êù°‰ª∂ÂèÇÊï∞ÊûÑÂª∫ÔºåÁî®URL‰º†ÈÄíÊü•ËØ¢ÂèÇÊï∞
+            var QryUrl = 'Specimen_handler.ashx?mode=qry&' + Parm;
+            $('#datagrid').datagrid({ url: QryUrl });
+        }
 
-	/*µº≥ˆ ˝æ›*/
-	function exportData(){
-		var Parm = getSearchParm();//ªÒµ√≤È—ØÃıº˛≤Œ ˝ππΩ®£¨”√URL¥´µ›≤È—Ø≤Œ ˝
-		var QryUrl='Specimen_handler.ashx?mode=exp&'+Parm; 
-		$.post(QryUrl,function(result){
-			if (result.success){
-				window.location.href = result.msg;
-			} else {
-				$.messager.alert('¥ÌŒÛ', result.msg, 'warning');
-			}
-		},'json');
-	}
+        /*ÂØºÂá∫Êï∞ÊçÆ*/
+        function exportData() {
+            var Parm = getSearchParm();//Ëé∑ÂæóÊü•ËØ¢Êù°‰ª∂ÂèÇÊï∞ÊûÑÂª∫ÔºåÁî®URL‰º†ÈÄíÊü•ËØ¢ÂèÇÊï∞
+            var QryUrl = 'Specimen_handler.ashx?mode=exp&' + Parm;
+            $.post(QryUrl, function (result) {
+                if (result.success) {
+                    window.location.href = result.msg;
+                } else {
+                    $.messager.alert('ÈîôËØØ', result.msg, 'warning');
+                }
+            }, 'json');
+        }
 
-    /*πÿ±’dialog÷ÿ–¬º”‘ÿdatagrid ˝æ›*/
-    $('#dlg').dialog({onClose:function(){ 
-        $('#datagrid').datagrid('reload'); //÷ÿ–¬º”‘ÿ‘ÿ ˝æ›
-    }});
+        /*ÂÖ≥Èó≠dialogÈáçÊñ∞Âä†ËΩΩdatagridÊï∞ÊçÆ*/
+        $('#dlg').dialog({
+            onClose: function () {
+                $('#datagrid').datagrid('reload'); //ÈáçÊñ∞Âä†ËΩΩËΩΩÊï∞ÊçÆ
+            }
+        });
 
-</script>
+    </script>
 
 </body>
 </html>
