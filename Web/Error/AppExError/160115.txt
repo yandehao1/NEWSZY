@@ -1,0 +1,86 @@
+
+Log Entry : 
+01/15/2016 11:40:30
+LineNumber：【0】
+LinePosition：【0】
+Message：【缺少根元素。】
+StackTrace：【   在 System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   在 System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   在 System.Xml.XmlTextReaderImpl.Read()
+   在 System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   在 System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   在 System.Xml.XmlDocument.Load(XmlReader reader)
+   在 System.Xml.XmlDocument.LoadXml(String xml)
+   在 RuRo.BLL.HospitalXmlStrHelper.HospitalXmlStrToXmlDoc(String xmlStr) 位置 d:\扩展开发\2016年1月15日\SZY\BLL\SZY\HospitalXmlStrHelper.cs:行号 25】
+Source：【System.Xml】
+HResult：【-2146232000】
+
+________________________________________________________
+
+Log Entry : 
+01/15/2016 11:45:46
+LineNumber：【0】
+LinePosition：【0】
+Message：【缺少根元素。】
+StackTrace：【   在 System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   在 System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   在 System.Xml.XmlTextReaderImpl.Read()
+   在 System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   在 System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   在 System.Xml.XmlDocument.Load(XmlReader reader)
+   在 System.Xml.XmlDocument.LoadXml(String xml)
+   在 RuRo.BLL.HospitalXmlStrHelper.HospitalXmlStrToXmlDoc(String xmlStr)】
+Source：【System.Xml】
+HResult：【-2146232000】
+
+________________________________________________________
+
+Log Entry : 
+01/15/2016 14:18:13
+LineNumber：【1】
+LinePosition：【41】
+Message：【意外的 XML 声明。XML 声明必须是文档中的第一个节点并且在它之前不允许出现空白字符。 第 1 行，位置 41。】
+StackTrace：【   在 System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   在 System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   在 System.Xml.XmlTextReaderImpl.ParsePI(StringBuilder piInDtdStringBuilder)
+   在 System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   在 System.Xml.XmlTextReaderImpl.Read()
+   在 System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   在 System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   在 System.Xml.XmlDocument.Load(XmlReader reader)
+   在 System.Xml.XmlDocument.LoadXml(String xml)
+   在 RuRo.BLL.HospitalXmlStrHelper.HospitalXmlStrToXmlDoc(String xmlStr) 位置 d:\扩展开发\2016年1月15日\SZY\BLL\SZY\HospitalXmlStrHelper.cs:行号 25】
+Source：【System.Xml】
+HResult：【-2146232000】
+
+________________________________________________________
+
+Log Entry : 
+01/15/2016 14:38:46
+LineNumber：【1】
+LinePosition：【41】
+Message：【意外的 XML 声明。XML 声明必须是文档中的第一个节点并且在它之前不允许出现空白字符。 第 1 行，位置 41。】
+StackTrace：【   在 System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   在 System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   在 System.Xml.XmlTextReaderImpl.ParsePI(StringBuilder piInDtdStringBuilder)
+   在 System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   在 System.Xml.XmlTextReaderImpl.Read()
+   在 System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   在 System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   在 System.Xml.XmlDocument.Load(XmlReader reader)
+   在 System.Xml.XmlDocument.LoadXml(String xml)
+   在 RuRo.BLL.HospitalXmlStrHelper.HospitalXmlStrToXmlDoc(String xmlStr) 位置 d:\扩展开发\2016年1月15日\SZY\BLL\SZY\HospitalXmlStrHelper.cs:行号 25】
+Source：【System.Xml】
+HResult：【-2146232000】
+
+________________________________________________________
+
+Log Entry : 
+01/15/2016 16:42:20
+Message：【无法将类型为“System.Xml.XmlElement”的对象强制转换为类型“System.IConvertible”。】
+StackTrace：【   在 System.Convert.ToDateTime(Object value)
+   在 RuRo.BLL.PK.XmlStrToPatientDiagnoseResuestForZhuYuan(String xml, String& _msg) 位置 d:\扩展开发\2016年1月15日\SZY\BLL\PK.cs:行号 43】
+Source：【mscorlib】
+HResult：【-2147467262】
+
+________________________________________________________
