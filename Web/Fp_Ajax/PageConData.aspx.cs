@@ -34,7 +34,7 @@ namespace RuRo.Web
                 case "SamplingMethod": Response.Write(ReturnSamplingMethodData()); break;
                 case "DiagnoseTypeFlag": Response.Write(ReturnDiagnoseTypeFlag()); break;
                 case "SampleType": Response.Write(ReturnSampleType(up)); break;
-                case "departments": Response.Write(ReturnDepartments()); break;
+                //case "departments": Response.Write(ReturnDepartments()); break;
                 case "SampleGroups": Response.Write(ReturnSampleGroups(up)); break;
                 default:
                     break;
@@ -110,7 +110,6 @@ namespace RuRo.Web
         /// <returns></returns>
         private string ReturnSampleType(FreezerProUtility.Fp_Common.UnameAndPwd up)
         {
-            //string res = "[{\"value\": \"0\",\"text\": \"正常组织-心研所\" },{\"value\": \"1\", \"text\": \"正常组织-肺癌所\"}, { \"value\": \"2\", \"text\": \"组织-心研所\"} , { \"value\": \"3\", \"text\": \"组织-肺癌所\"} ]";
             Common.CreatFpUrl fpurl = new Common.CreatFpUrl();
             string url = fpurl.FpUrl;
             Dictionary<string, string> dic = FreezerProUtility.Fp_BLL.Samples.GetAllIdAndNamesDic(up);

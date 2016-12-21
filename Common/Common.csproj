@@ -149,6 +149,7 @@
     <Compile Include="CookieHelper.cs" />
     <Compile Include="CreatFpUrl.cs" />
     <Compile Include="DataTableHelper.cs" />
+    <Compile Include="ExcelHelper.cs" />
     <Compile Include="HttpHelper.cs" />
     <Compile Include="HttpProc.cs" />
     <Compile Include="JavaScriptPlus.cs" />

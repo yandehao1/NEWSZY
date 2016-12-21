@@ -149,6 +149,7 @@
     </Compile>
     <Compile Include="QueryRecoder.cs" />
     <Compile Include="Specimen.cs" />
+    <Compile Include="TB_CONVERT.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

@@ -31,7 +31,7 @@
                     "codeType": codeType,
                     "code": code,
                     "ksrq00": ksrq00,
-                    "jsrq00": jsrq00,
+                    "jsrq00": jsrq00
                 },
                 onLoadError: function () {
                     $("#PatientDiagnoseDg").datagrid("loaded");

@@ -163,6 +163,7 @@
     <Compile Include="SZY\Request\PatientDiagnoseResuest.cs" />
     <Compile Include="SZY\Request\Request.cs" />
     <Compile Include="SZY\ValidationData.cs" />
+    <Compile Include="TB_CONVERT.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="UnameAndPwd.cs" />
     <Compile Include="Web References\BasicData\Reference.cs">

@@ -904,6 +904,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sever\Specimen_handler.ashx" />
+    <Content Include="Pages\jsondata.json" />
     <None Include="Properties\PublishProfiles\FpExtend.pubxml" />
   </ItemGroup>
   <PropertyGroup>

@@ -89,7 +89,7 @@ namespace RuRo.BLL
 
         #endregion 获取基本信息字典（样本源） +  private Dictionary<string, string> GetBaseInfoDic()
 
-        private string PostData(Dictionary<string, string> dic)
+        public string PostData(Dictionary<string, string> dic)
         {
             UnameAndPwd up = new UnameAndPwd();
             string result = FreezerProUtility.Fp_BLL.SampleSocrce.ImportSampleSourceDataToFp(up.GetUp(), "患者信息", dic);
