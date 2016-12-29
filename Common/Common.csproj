@@ -112,6 +112,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Excel.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Newtonsoft.Json.dll</HintPath>
@@ -149,7 +152,10 @@
     <Compile Include="CookieHelper.cs" />
     <Compile Include="CreatFpUrl.cs" />
     <Compile Include="DataTableHelper.cs" />
-    <Compile Include="ExcelHelper.cs" />
+    <Compile Include="EXCEL\GridViewExport.cs" />
+    <Compile Include="EXCEL\DataToExcel.cs" />
+    <Compile Include="EXCEL\ExcelHelper.cs" />
+    <Compile Include="EXCEL\ExportExcel.cs" />
     <Compile Include="HttpHelper.cs" />
     <Compile Include="HttpProc.cs" />
     <Compile Include="JavaScriptPlus.cs" />
@@ -165,9 +171,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataCache.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DataToExcel.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DEncrypt\DEncrypt.cs">

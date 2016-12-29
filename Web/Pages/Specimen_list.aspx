@@ -80,12 +80,13 @@
                     </table>--%>
                 </td>
                 <!--button按钮工具栏-->
-                <td style="text-align: right;">管数：<input class="easyui-combobox" name="ScountE" id="ScountE" style="width: 100px" data-options="required:true" />
+                <td style="text-align: right;">样本描述：<input class="easyui-textbox" name="descriptionE" id="descriptionE" style="width: 100px" data-options="required:true" />
+                    管数：<input class="easyui-combobox" name="ScountE" id="ScountE" style="width: 100px" data-options="required:true" />
                     体积：<input class="easyui-combobox" name="volumeE" id="volumeE" style="width: 100px" data-options="required:true" />
                     样本类型：<input class="easyui-combobox" name="sampleTypeE" id="sampleTypeE" style="width: 100px" data-options="required:true" />
                     <%--<a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonAdd" iconcls="icon-add" plain="false" onclick="newForm();">添加</a>--%>
                     <%--  <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonEdit" iconcls="icon-edit" plain="false" onclick="editForm();">编辑</a>--%>
-                    <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonInfo"  plain="false" onclick="postinfoForm();">导入样本源</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonInfo" plain="false" onclick="postinfoForm();">导入样本源</a>
                     <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonExport" iconcls="icon-save" plain="false" onclick="exportData();">导出EXCEL</a>
                     <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonDel" iconcls="icon-cancel" plain="false" onclick="destroy();">删除</a>
                     <%--<a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonPrint" iconcls="icon-print" plain="false" onclick="CreateFormPage('Specimen', $('#datagrid'));">打印</a>--%>
@@ -101,18 +102,18 @@
         /*页面设置*/
         //样品类型
         $(function () {
-            //$('#sampleTypeE').combobox({
-            //    url: '../Fp_Ajax/PageConData.aspx?conMarc=SampleType',
-            //    method: 'get',
-            //    valueField: 'text',
-            //    textField: 'text',
-            //    panelHeight: 'auto',
-            //    onSelect: function (rec) {
-            //        var text = $('#sampleTypeE').combobox('getValue');
-            //        $('#volumeE').textbox('clear');
-            //        $('#volumeE').textbox('setValue', '0');
-            //    }
-            //});
+            $('#sampleTypeE').combobox({
+                url: '../Fp_Ajax/PageConData.aspx?conMarc=SampleType',
+                method: 'get',
+                valueField: 'text',
+                textField: 'text',
+                panelHeight: 'auto',
+                onSelect: function (rec) {
+                    var text = $('#sampleTypeE').combobox('getValue');
+                    $('#volumeE').textbox('clear');
+                    $('#volumeE').textbox('setValue', '0');
+                }
+            });
         })
         //体积
         $(function () {
@@ -235,7 +236,7 @@
                 ajaxLoading();
                 $.ajax({
                     type: 'post',
-                    datatype:"json",
+                    datatype: "json",
                     url: '/Sever/Specimen_handler.ashx?mode=posty&num=' + num,
                     data: { spJson: _SpJsondata },
                     success: function (data) {
@@ -250,21 +251,32 @@
         }
         /*导出数据*/
         function exportData() {
-            var ScountE = $('#ScountE').textbox('getValue');
-            var volumeE = $('#volumeE').textbox('getValue');
+            //获取样本设置
+            var ScountE = $('#ScountE').textbox('getValue');//管数
+            var volumeE = $('#volumeE').textbox('getValue');//容量
+            var descriptionE = $('#descriptionE').textbox('getValue');//描述
             var sampleTypeE = $('#sampleTypeE').textbox('getValue');
-            var _Specimen_dg = $('#Specimen_dg').datagrid('getChecked');
-            if (ScountE || volumeE || sampleTypeE || _Specimen_dg) {
-                //上面几个不能为空
-            }
+            var _Specimen_dg = $('#Specimen_dg').datagrid('getRows');
+            var rowSpecimen_dg = JSON.stringify(_Specimen_dg);
+            var num = MathRand();
+            if (!isPositiveNum(ScountE)) { $.messager.alert('警告', '管数必须为数字', 'error'); return; }
+            if (rowSpecimen_dg == "[]" || rowSpecimen_dg == "" || rowSpecimen_dg == undefined) { $.messager.alert('警告', '无导入数据', 'error'); return; }
             else {
-                var QryUrl = 'Specimen_handler.ashx?mode=exp&' + Parm;
+                ajaxLoading();
                 $.ajax({
-                    type: 'json',
-                    url: '',
-                    data: [ScountE, volumeE, sampleTypeE, _Specimen_dg],
+                    type: "POST",
+                    url: "/Sever/Specimen_handler.ashx?num="+num,
+                    data: {
+                        "mode": "exp",
+                        "ScountE": ScountE,
+                        "volumeE": volumeE,
+                        "sampleTypeE": sampleTypeE,
+                        "descriptionE": descriptionE,
+                        "rowSpecimen_dg": rowSpecimen_dg
+                    },
                     success: function (data) {
-
+                        ajaxLoadEnd();
+                        $.messager.alert('提示', data); return;
                     }
                 });
             }
@@ -299,6 +311,11 @@
                 $.messager.alert('警告', '请选择数据', 'warning');
             }
         }
+        //是否为正整数 
+        function isPositiveNum(s) {
+            var re = /^[0-9]*[1-9][0-9]*$/;
+            return re.test(s)
+        }
         //生成随机数
         function MathRand() {
             var Num = "";
@@ -332,80 +349,6 @@
                 $('#datagrid').datagrid('reload'); //重新加载载数据
             }
         });
-
-        /*新增表单*/
-        //function newForm() {
-        //    $('#dlg').dialog({
-        //        title: 'Specimen-添加数据',
-        //        width: 650,
-        //        height: 450,
-        //        closed: false,
-        //        cache: false,
-        //        href: 'Specimen_info.aspx?mode=ins'
-        //    });
-        //}
-
-        ///*查看数据*/
-        //function infoForm() {
-        //    var rows = $('#datagrid').datagrid('getSelections');
-        //    if (rows.length > 0) {
-        //        if (rows.length == 1) {
-        //            var row = $('#datagrid').datagrid('getSelected');
-        //            $('#dlg').dialog({
-        //                title: 'Specimen-查看数据',
-        //                width: 650,
-        //                height: 450,
-        //                closed: false,
-        //                cache: true,
-        //                href: 'Specimen_info.aspx?mode=inf&pk=' + row.id
-        //            });
-        //        } else {
-        //            $.messager.alert('警告', '查看操作只能选择一条数据', 'warning');
-        //        }
-        //    } else {
-        //        $.messager.alert('警告', '请选择数据', 'warning');
-        //    }
-        //}
-
-        ///*修改数据*/
-        //function editForm() {
-        //    var rows = $('#datagrid').datagrid('getSelections');
-        //    if (rows.length > 0) {
-        //        if (rows.length == 1) {
-        //            var row = $('#datagrid').datagrid('getSelected');
-        //            $('#dlg').dialog({
-        //                title: 'Specimen-修改数据',
-        //                width: 650,
-        //                height: 450,
-        //                closed: false,
-        //                cache: true,
-        //                href: 'Specimen_info.aspx?mode=upd&pk=' + row.id
-        //            });
-        //        } else {
-        //            $.messager.alert('警告', '修改操作只能选择一条数据', 'warning');
-        //        }
-        //    } else {
-        //        $.messager.alert('警告', '请选择数据', 'warning');
-        //    }
-        //}
-        ///*查询条件参数构建*/
-        //function getSearchParm() {
-        //    //增加条件，请追加参数名称
-        //    /*combobox值获取方法,用于下拉条件查询条件组合*/
-        //    //var v_so_字段名称 = $('#so_字段名称').combobox('getValue');
-        //    var v_parm
-        //    var v_so_keywords = $('#so_keywords').searchbox('getValue');
-        //    v_parm = 'so_keywords=' + escape(v_so_keywords);
-        //    return v_parm;
-        //}
-
-        ///*查询数据*/
-        //function searchData() {
-        //    /*兼顾导出Excel公用条件，在这里datagrid不用load函数加载参数，直接用URL传递参数*/
-        //    var Parm = getSearchParm();//获得查询条件参数构建，用URL传递查询参数
-        //    var QryUrl = 'Specimen_handler.ashx?mode=qry&' + Parm;
-        //    $('#datagrid').datagrid({ url: QryUrl });
-        //}
     </script>
 
 </body>

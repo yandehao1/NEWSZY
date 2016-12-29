@@ -55,6 +55,9 @@
                     <li>
                         <div><a target="mainFrame" rel="Pages/NormalLisReport_list_F.aspx"><span></span>对接临床检测信息</a></div>
                     </li>
+                                        <li>
+                        <div><a target="mainFrame" rel="Pages/Specimen_list.aspx"><span></span>标本编号扫描</a></div>
+                    </li>
                 </ul>
             </div>
         </div>

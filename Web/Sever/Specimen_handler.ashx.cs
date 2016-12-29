@@ -9,8 +9,6 @@ using System.Text;
 using RuRo.BLL;
 namespace RuRo
 {
-    [WebService(Namespace = "http://tempuri.org/")]
-    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     public class Specimen_handler : IHttpHandler
     {
         public void ProcessRequest(HttpContext context)
@@ -164,40 +162,79 @@ namespace RuRo
         private static void QueryImport(HttpContext context, bool export)
         {
             //获取数据
-            string strScount = context.Request["ScountE"].ToString();
-            string strvolume = context.Request["volumeE"].ToString();
-            string strSampleType = context.Request["sampleTypeE"].ToString();
-            string strData = context.Request["_Specimen_dg"].ToString();
+            string strScount = context.Request["ScountE"].ToString();//管数
+            string strvolume = context.Request["volumeE"].ToString();//容量
+            string strSampleType = context.Request["sampleTypeE"].ToString();//样本类型
+            string strData = context.Request["rowSpecimen_dg"].ToString();//样本数据
+            string strdescription = context.Request["descriptionE"].ToString();//描述
             //转化数据
-            List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
-            //创建datatable
-            DataTable dt = new DataTable();
+            DataTable Specimen_dg = FreezerProUtility.Fp_Common.FpJsonHelper.DeserializeObject<DataTable>(strData);
+            DataTable newSpecimen_dg = new DataTable();//转换后新数据存放
+            int count = Convert.ToInt32(strScount);
+            RuRo.BLL.TB_CONVERT tb_bll = new TB_CONVERT();
+            DataSet ds = tb_bll.GetList("type='sample' order by num asc");//获取报表名称
+            //循环读取Specimen_dg的列名,匹配成为报表字段
+            for (int i = 0; i < Specimen_dg.Columns.Count; i++)
+            {
+                for (int j = 0; j < ds.Tables[0].Rows.Count; j++)
+                {
+                    if (Specimen_dg.Columns[i].ColumnName.ToString() == ds.Tables[0].Rows[j]["Name"].ToString())
+                    {
+                        Specimen_dg.Columns[i].ColumnName = ds.Tables[0].Rows[j]["REPORT_NAME"].ToString();
+                    }
+                }
+            }
+            //添加其他列
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                if (Specimen_dg.Columns.Contains(ds.Tables[0].Rows[i]["REPORT_NAME"].ToString())) { }
+                else
+                {
+                    Specimen_dg.Columns.Add(ds.Tables[0].Rows[i]["REPORT_NAME"].ToString());
+                }
+            }
             //插入数据
-            //for (int i = 0; i < length; i++)
-            //{
-
-            //}
-            //转化为EXCEL
+            for (int i = 0; i < Specimen_dg.Rows.Count; i++)
+            {
+                Specimen_dg.Rows[i]["Name"] = Specimen_dg.Rows[i]["patientnum"];
+                Specimen_dg.Rows[i]["Sample Source"] = Specimen_dg.Rows[i]["patientnum"];
+                Specimen_dg.Rows[i]["Description"] = strdescription;
+                Specimen_dg.Rows[i]["Sample Type"] = strSampleType;
+                Specimen_dg.Rows[i]["Volume"] = strvolume;
+                Specimen_dg.Rows[i]["ALIQUOT"] = i + 1;
+            }
+            //分管计数
+            DataTable dtt = Specimen_dg.Copy();
+            for (int i = 0; i < dtt.Rows.Count; i++)
+            {
+                for (int j = 0; j < count - 1; j++)
+                {
+                    Specimen_dg.Rows.Add(dtt.Rows[i].ItemArray);
+                }
+            }
+            DataTable dt = new DataTable();
+            //移除不需要的列
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                if (Specimen_dg.Columns.Contains(ds.Tables[0].Rows[i]["REPORT_NAME"].ToString()))
+                {
+                    string strColumns = ds.Tables[0].Rows[i]["REPORT_NAME"].ToString();
+                    newSpecimen_dg.Columns.Add(ds.Tables[0].Rows[i]["REPORT_NAME"].ToString());
+                }
+            }
+            //列排序
+            for (int i = 0; i < Specimen_dg.Rows.Count; i++)
+            {
+                newSpecimen_dg.ImportRow(Specimen_dg.Rows[i]);
+            }
+            //转化EXCEL
+            //获取本地路径
+            RuRo.Common.DataToExcel dataexp = new Common.DataToExcel();
+            dataexp.OutputExcel(newSpecimen_dg, "", @"D:/EXCEL/");
+           //RuRo.Common.Excel.ExcelHelper.OutputToExcel(newSpecimen_dg, @"D:/EXCEL/1.xls");
         }
 
-        /// <summary>
-        /// 查询info数据实体类
-        /// </summary>
-        /// <param name="context"></param>
-        private static void InfoData(HttpContext context)
-        {
-            //BLL.Specimen_BLL bll_Specimen = new BLL.Specimen_BLL();
-            //Model.Specimen model_Specimen = new Model.Specimen();
-            //DataTable dt = new DataTable();
-            //if (context.Request["pk"] != null)
-            //{
-            //    int pk = int.Parse(context.Request["pk"]);
-            //    model_Specimen = bll_Specimen.GetModel(pk);
-            //    bll_Specimen.GetModel(ref dt, pk);
-            //}
-            //string strJson = JSONHelper.DataTable2Json(dt, true);
-            //context.Response.Write(strJson);
-        }
+
 
         /// <summary>
         /// 保存数据
@@ -207,14 +244,14 @@ namespace RuRo
         {
             //获取前台数据
             string strdata = context.Request["_SpJsondata"].ToString();
-            string num = context.Request["num"].ToString();
+            string num = context.Request["num"].ToString();//随机数
             List<Dictionary<string, string>> datalistdic = new List<Dictionary<string, string>>();//用来接收前台数据
             Dictionary<string, string> Valuedic = new Dictionary<string, string>();//用来接收字段设定
             datalistdic = FreezerProUtility.Fp_Common.FpJsonHelper.DeserializeObject<List<Dictionary<string, string>>>(strdata);
             if (datalistdic.Count > 0)
             {
                 RuRo.BLL.TB_CONVERT tb_bll = new BLL.TB_CONVERT();
-                DataSet ds = tb_bll.GetList("type=source");
+                DataSet ds = tb_bll.GetList("type='source'");
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -250,8 +287,18 @@ namespace RuRo
         {
             List<Dictionary<string, string>> lis = new List<Dictionary<string, string>>();
             return lis;
-            
+
         }
+        #region 未使用代码块
+        /// <summary>
+        /// 查询info数据实体类
+        /// </summary>
+        /// <param name="context"></param>
+        private static void InfoData(HttpContext context)
+        {
+        }
+
+        #endregion
 
         #region JSON实体返回类定义
         /// <summary>

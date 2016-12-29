@@ -495,7 +495,7 @@ namespace RuRo.Common
             ArrayList TableList = new ArrayList();
             TableList = GetExcelTables(ExcelFilePath);
 
-            if (TableName.IndexOf(TableName) < 0)
+            if (TableList.IndexOf(TableName) < 0)
             {
                 TableName = TableList[0].ToString().Trim();
             }

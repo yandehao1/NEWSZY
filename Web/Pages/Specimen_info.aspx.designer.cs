@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace ruro {
+namespace RuRo {
     
     
     public partial class Specimen_info {

@@ -878,6 +878,7 @@
     <Folder Include="Components\" />
     <Folder Include="Error\AppError\" />
     <Folder Include="Error\AppExError\" />
+    <Folder Include="EXCEL\" />
     <Folder Include="Pages\EmpiInfo\" />
     <Folder Include="Pages\NormalLisReport\" />
     <Folder Include="Pages\PatientDiagnose\" />
@@ -904,7 +905,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sever\Specimen_handler.ashx" />
-    <Content Include="Pages\jsondata.json" />
     <None Include="Properties\PublishProfiles\FpExtend.pubxml" />
   </ItemGroup>
   <PropertyGroup>
