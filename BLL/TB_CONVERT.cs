@@ -189,6 +189,16 @@ namespace RuRo.BLL
                         }
                     }
                 }
+                if (newdic.ContainsKey("Name")){}
+                else
+                {
+                    newdic.Add("Name", datadic["患者编号"]);
+                }
+                if (newdic.ContainsKey("Description")){}
+                else
+                {
+                    newdic.Add("Description", datadic["姓名"]);
+                }
                 listdic.Add(newdic);
             }
             return listdic;

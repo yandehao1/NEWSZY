@@ -156,6 +156,8 @@
     <Compile Include="EXCEL\DataToExcel.cs" />
     <Compile Include="EXCEL\ExcelHelper.cs" />
     <Compile Include="EXCEL\ExportExcel.cs" />
+    <Compile Include="Filehleper\DirFileHelper.cs" />
+    <Compile Include="Filehleper\FileOperateHelper.cs" />
     <Compile Include="HttpHelper.cs" />
     <Compile Include="HttpProc.cs" />
     <Compile Include="JavaScriptPlus.cs" />
@@ -185,7 +187,7 @@
     <Compile Include="DEncrypt\RSACryption.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="INIFile.cs" />
+    <Compile Include="Filehleper\INIFile.cs" />
     <Compile Include="MessageBox.cs">
       <SubType>Code</SubType>
     </Compile>

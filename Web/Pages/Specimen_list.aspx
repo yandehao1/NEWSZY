@@ -82,14 +82,11 @@
                 <!--button按钮工具栏-->
                 <td style="text-align: right;">样本描述：<input class="easyui-textbox" name="descriptionE" id="descriptionE" style="width: 100px" data-options="required:true" />
                     管数：<input class="easyui-combobox" name="ScountE" id="ScountE" style="width: 100px" data-options="required:true" />
+                     样本类型：<input class="easyui-combobox" name="sampleTypeE" id="sampleTypeE" style="width: 100px" data-options="required:true" />
                     体积：<input class="easyui-combobox" name="volumeE" id="volumeE" style="width: 100px" data-options="required:true" />
-                    样本类型：<input class="easyui-combobox" name="sampleTypeE" id="sampleTypeE" style="width: 100px" data-options="required:true" />
-                    <%--<a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonAdd" iconcls="icon-add" plain="false" onclick="newForm();">添加</a>--%>
-                    <%--  <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonEdit" iconcls="icon-edit" plain="false" onclick="editForm();">编辑</a>--%>
                     <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonInfo" plain="false" onclick="postinfoForm();">导入样本源</a>
                     <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonExport" iconcls="icon-save" plain="false" onclick="exportData();">导出EXCEL</a>
                     <a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonDel" iconcls="icon-cancel" plain="false" onclick="destroy();">删除</a>
-                    <%--<a href="javascript:void(0)" class="easyui-linkbutton" id="linkbuttonPrint" iconcls="icon-print" plain="false" onclick="CreateFormPage('Specimen', $('#datagrid'));">打印</a>--%>
                 </td>
             </tr>
         </table>

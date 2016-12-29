@@ -22,9 +22,6 @@ namespace RuRo
                     case "posty":/*导入到FP*/
                         PostData(context);
                         break;
-                    case "del":/*删除*/
-                        DeleteData(context);
-                        break;
                     case "qry":/*查询*/
                         QueryData(context, false);
                         break;
@@ -121,39 +118,6 @@ namespace RuRo
             //}
             #endregion
         }
-
-        /// <summary>
-        /// 删除数据
-        /// </summary>
-        /// <param name="context"></param>
-        private static void DeleteData(HttpContext context)
-        {
-            //result rlt = new result();
-            //if (context.Request["pk"] != null)
-            //{
-            //    string pk = context.Request["pk"];
-            //    string[] ArrayPk = pk.Split(',');
-            //    BLL.Specimen_BLL bll_Specimen = new BLL.Specimen_BLL();
-            //    int successNumber = 0;
-            //    string  errorMessage = "";
-            //    foreach (string strPk in ArrayPk)
-            //    {
-            //        if (bll_Specimen.Delete(int.Parse(strPk)))
-            //        {
-            //            successNumber += 1;
-            //        }
-            //    }
-            //    rlt.success = true;
-            //    rlt.msg = "成功删除[" + successNumber.ToString() + "/" + ArrayPk.Length.ToString() + "]条数据;" + errorMessage; 
-            //}
-            //else
-            //{
-            //    rlt.success = false;
-            //    rlt.msg = "PK字段为Null";
-            //}
-            //context.Response.Write(JSONHelper.Convert2Json(rlt));
-        }
-
         /// <summary>
         /// 导出EXCEL
         /// </summary>
@@ -169,8 +133,34 @@ namespace RuRo
             string strdescription = context.Request["descriptionE"].ToString();//描述
             //转化数据
             DataTable Specimen_dg = FreezerProUtility.Fp_Common.FpJsonHelper.DeserializeObject<DataTable>(strData);
-            DataTable newSpecimen_dg = new DataTable();//转换后新数据存放
             int count = Convert.ToInt32(strScount);
+            //传输数据匹配
+            if (Specimen_dg.Rows.Count > 0)
+            {
+                DataTable newSpecimen_dg = DataForConvert(Specimen_dg, strvolume, strSampleType, strdescription, count);
+                //获取本地路径
+                string strSavePath = SavePath(context);
+                //导出数据到EXCEL
+                RuRo.Common.DataToExcel dataexp = new Common.DataToExcel();
+                dataexp.OutputExcel(newSpecimen_dg, "", strSavePath);
+            }
+            else
+            {
+
+            }
+        }
+        /// <summary>
+        /// 转换DataTable数据，并匹配
+        /// </summary>
+        /// <param name="Specimen_dg">数据源</param>
+        /// <param name="strvolume">容量</param>
+        /// <param name="strSampleType">样本类型</param>
+        /// <param name="strdescription">样本描述</param>
+        /// <param name="strScount">管数</param>
+        /// <returns></returns>
+        private static DataTable DataForConvert(DataTable Specimen_dg, string strvolume, string strSampleType, string strdescription, int count)
+        {
+            DataTable newSpecimen_dg = new DataTable();//转换后新表
             RuRo.BLL.TB_CONVERT tb_bll = new TB_CONVERT();
             DataSet ds = tb_bll.GetList("type='sample' order by num asc");//获取报表名称
             //循环读取Specimen_dg的列名,匹配成为报表字段
@@ -212,7 +202,6 @@ namespace RuRo
                     Specimen_dg.Rows.Add(dtt.Rows[i].ItemArray);
                 }
             }
-            DataTable dt = new DataTable();
             //移除不需要的列
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
@@ -227,15 +216,29 @@ namespace RuRo
             {
                 newSpecimen_dg.ImportRow(Specimen_dg.Rows[i]);
             }
-            //转化EXCEL
-            //获取本地路径
-            RuRo.Common.DataToExcel dataexp = new Common.DataToExcel();
-            dataexp.OutputExcel(newSpecimen_dg, "", @"D:/EXCEL/");
-           //RuRo.Common.Excel.ExcelHelper.OutputToExcel(newSpecimen_dg, @"D:/EXCEL/1.xls");
+            //排序
+            DataView dv = newSpecimen_dg.DefaultView;
+            dv.Sort = "ALIQUOT asc";
+            newSpecimen_dg = dv.ToTable();
+            return newSpecimen_dg;
         }
+        /// <summary>
+        /// 获取保存路径
+        /// </summary>
+        /// <returns></returns>
+        private static string SavePath(HttpContext context)
+        {
+            string SavePath = context.Server.MapPath("~") + @"EXCEL\";//获取路径
+            if (RuRo.Common.Filehleper.DirFileHelper.IsExistDirectory(SavePath))
+            {
 
-
-
+            }
+            else
+            {
+                RuRo.Common.Filehleper.DirFileHelper.CreateDir(SavePath);
+            }
+            return SavePath;
+        }
         /// <summary>
         /// 保存数据
         /// </summary>
@@ -243,11 +246,13 @@ namespace RuRo
         private static void PostData(HttpContext context)
         {
             //获取前台数据
-            string strdata = context.Request["_SpJsondata"].ToString();
+            string strdata = context.Request["spJson"].ToString();
             string num = context.Request["num"].ToString();//随机数
             List<Dictionary<string, string>> datalistdic = new List<Dictionary<string, string>>();//用来接收前台数据
             Dictionary<string, string> Valuedic = new Dictionary<string, string>();//用来接收字段设定
             datalistdic = FreezerProUtility.Fp_Common.FpJsonHelper.DeserializeObject<List<Dictionary<string, string>>>(strdata);
+            DataTable dt = FreezerProUtility.Fp_Common.FpJsonHelper.DeserializeObject<DataTable>(strdata);
+            string msg = "";//返回处理结果
             if (datalistdic.Count > 0)
             {
                 RuRo.BLL.TB_CONVERT tb_bll = new BLL.TB_CONVERT();
@@ -259,27 +264,41 @@ namespace RuRo
                         Valuedic.Add(ds.Tables[0].Rows[i]["Name"].ToString(), ds.Tables[0].Rows[i]["REPORT_NAME"].ToString());
                     }
                 }
-                //匹配转换字段
+                //匹配转换字段，可导入系统
                 List<Dictionary<string, string>> newlistdic = tb_bll.PageForSource(Valuedic, datalistdic);
                 BLL.EmpiInfo bll = new BLL.EmpiInfo();
-                string msg = "";
+                string[] msglist = { };
                 //将样本源导入到系统
                 for (int i = 0; i < newlistdic.Count; i++)
                 {
                     string result = bll.PostData(newlistdic[i]);
                     if (result.Contains("\"success\":true,") || result.Contains("should be unique."))
                     {
-                        //导入成功
+                        //导入成功，记录数据库
+                        string data = FreezerProUtility.Fp_Common.FpJsonHelper.ObjectToJsonStr(newlistdic[i]);
+                        Specimen_BLL sp_bll = new Specimen_BLL();
+                        RuRo.Model.Specimen spmodel = new Model.Specimen();
+                        spmodel = FreezerProUtility.Fp_Common.FpJsonHelper.DeserializeObject<RuRo.Model.Specimen>(data);
+                        sp_bll.Add(spmodel);
+                        msglist[i] = "第" + i.ToString() + "条数据导入成功.";
                     }
                     else
                     {
-                        //导入失败
+                        //导入失败，记录失败条目
+                        msglist[i] = "第" + i.ToString() + "条数据出现错误：" + result+".";
                     }
                 }
+                //拼接信息
+                for (int i = 0; i < msglist[i].Length; i++)
+                {
+                    msg = msg + msglist[i];
+                }
+                context.Response.Write(msg);
             }
             else
             {
-
+                msg = "无数据传入";
+                context.Response.Write(msg);
             }
         }
         //转换后的数据添加Name和描述
@@ -289,17 +308,6 @@ namespace RuRo
             return lis;
 
         }
-        #region 未使用代码块
-        /// <summary>
-        /// 查询info数据实体类
-        /// </summary>
-        /// <param name="context"></param>
-        private static void InfoData(HttpContext context)
-        {
-        }
-
-        #endregion
-
         #region JSON实体返回类定义
         /// <summary>
         /// 实体Ajax返回类
