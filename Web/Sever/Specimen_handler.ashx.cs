@@ -267,11 +267,12 @@ namespace RuRo
                 //匹配转换字段，可导入系统
                 List<Dictionary<string, string>> newlistdic = tb_bll.PageForSource(Valuedic, datalistdic);
                 BLL.EmpiInfo bll = new BLL.EmpiInfo();
-                string[] msglist = { };
+                List<string> msgList = new List<string>();
                 //将样本源导入到系统
                 for (int i = 0; i < newlistdic.Count; i++)
                 {
-                    string result = bll.PostData(newlistdic[i]);
+                    int count=i+1;
+                    string result = bll.PostData(newlistdic[i]);//导入
                     if (result.Contains("\"success\":true,") || result.Contains("should be unique."))
                     {
                         //导入成功，记录数据库
@@ -280,19 +281,17 @@ namespace RuRo
                         RuRo.Model.Specimen spmodel = new Model.Specimen();
                         spmodel = FreezerProUtility.Fp_Common.FpJsonHelper.DeserializeObject<RuRo.Model.Specimen>(data);
                         sp_bll.Add(spmodel);
-                        msglist[i] = "第" + i.ToString() + "条数据导入成功.";
+                        
+                        msgList.Add("第" + count.ToString() + "条数据导入成功.");
+                         
                     }
                     else
                     {
                         //导入失败，记录失败条目
-                        msglist[i] = "第" + i.ToString() + "条数据出现错误：" + result+".";
+                        msgList.Add("第" + count.ToString() + "条数据出现错误：" + result + ".");
                     }
                 }
-                //拼接信息
-                for (int i = 0; i < msglist[i].Length; i++)
-                {
-                    msg = msg + msglist[i];
-                }
+                msg = FreezerProUtility.Fp_Common.FpJsonHelper.ObjectToJsonStr(msgList);
                 context.Response.Write(msg);
             }
             else

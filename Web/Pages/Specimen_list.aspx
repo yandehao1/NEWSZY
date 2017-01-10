@@ -239,6 +239,14 @@
                     success: function (data) {
                         ajaxLoadEnd();
                         //接收后这里写代码
+                        var strdata = JSON.parse(data);
+                        var msg = "";
+                        if (strdata.length>0) {
+                            for (var i = 0; i < strdata.length; i++) {
+                                msg = strdata[i] + "\n";
+                            }
+                        }
+                        $.messager.alert('提示', msg); return;
                     }
                 });
             }

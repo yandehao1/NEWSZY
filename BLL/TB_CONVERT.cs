@@ -192,12 +192,12 @@ namespace RuRo.BLL
                 if (newdic.ContainsKey("Name")){}
                 else
                 {
-                    newdic.Add("Name", datadic["患者编号"]);
+                    newdic.Add("Name", datadic["patientnum"]);
                 }
                 if (newdic.ContainsKey("Description")){}
                 else
                 {
-                    newdic.Add("Description", datadic["姓名"]);
+                    newdic.Add("Description", datadic["patientname"]);
                 }
                 listdic.Add(newdic);
             }
